@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            font-family: 'Lucida Grande', Arial, sans-serif;            
+        }
+        h1{
+            text-align: center;
+            font-size: large;
+            color: coral;
+            font-weight: bold;
+        }
+        
+        .author-decor{
+            text-align: center;
+            font-size: smaller;
+            color: coral;
+        }
+        
+        ul{
+            text-align: justify;
+            display: inline-block;
+            font-size: medium;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <h1>My Tasks</h1>
+
+    {% if tasks %}
+        <p class="author-decor">Task counter: {{ tasks|length }}</p>
+    {% endif %}
+    
+    <form method="get" action="/">
+        <input type="text" id="title_filter" name="title_filter" value="{{ title_filter }}" placeholder="Search">
+        <button id="submit" type="submit">Search</button>
+    </form>
+
+    <ul>
+        {% for task in tasks %}
+            <li class="task">{{ task.name }} - {{ task.created_at }}</li>
+        {% empty %}
+            <li class="task">You have no tasks at this moment!</li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
